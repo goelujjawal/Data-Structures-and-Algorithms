@@ -1,0 +1,23 @@
+Problem :
+
+The task is to find the Kth smallest element in the given array.
+
+Example 1:
+Input:
+N = 6
+arr[] = 7 10 4 3 20 15
+K = 3
+
+Output : 7
+Explanation :
+3rd smallest element in the given 
+array is 7.
+
+
+Solution :
+
+n=int(input())
+a=list(map(int,input().split()))[:n]
+k=int(input())
+a.sort()
+print(a[k-1])
