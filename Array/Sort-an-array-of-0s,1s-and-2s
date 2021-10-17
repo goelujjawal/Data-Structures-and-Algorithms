@@ -1,0 +1,31 @@
+Problem :
+Sort an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+Example :
+
+Input: 
+N = 5
+arr[]= {0 2 1 2 0}
+Output:
+0 0 1 2 2
+Explanation:
+0s 1s and 2s are segregated into ascending order.
+
+
+Solution :
+------------------ With sort() ---------------
+
+n=int(input())
+arr=list(map(int,input().split()))
+arr.sort()
+for i in arr:
+    print(i,end=' ')
+    
+---------------- Without sort() ------------
+
+n=int(input())
+arr=list(map(int,input().split()))
+a=arr.count(0)
+b=arr.count(1)
+c=arr.count(2)
+print('0 '*a + '1 '*b + '2 '*c)
