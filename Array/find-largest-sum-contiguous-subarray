@@ -42,7 +42,7 @@ for i in range(0,n):
         max_till_here=0
 print(maxi)
 
----------------- O(n cube) complexity -------------------
+---------------- O(n cube) time complexity -------------------
 
 n=int(input())
 arr=list(map(int,input().split()))
