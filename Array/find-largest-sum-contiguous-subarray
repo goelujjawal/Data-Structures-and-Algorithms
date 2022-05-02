@@ -28,7 +28,7 @@ of element (-1)
 
 Solution :
 
------------- Kadane's Algorithm (O(1) complexity) -------------- 
+------------ Kadane's Algorithm (O(n) time complexity and O(1) space complexity) -------------- 
 
 n=int(input())
 arr=list(map(int,input().split()))
