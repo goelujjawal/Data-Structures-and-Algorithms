@@ -1,0 +1,56 @@
+Problem :
+
+Find the product of the maximum product subarray.
+
+Example 1:
+Input:
+N = 5
+Arr[] = {6, -3, -10, 0, 2}
+Output: 180
+Explanation: Subarray with maximum product
+is [6, -3, -10] which gives product as 180.
+
+Example 2:
+Input:
+N = 6
+Arr[] = {2, 3, 4, 5, -1, 0}
+Output: 120
+Explanation: Subarray with maximum product
+is [2, 3, 4, 5] which gives product as 120.
+
+
+Solution :
+
+---------- Time complexity - O(n*2) , Space complexity - O(1) ------------------
+
+a = list(map(int,input().split()))
+pro=a[0]
+for i in range(0,len(a)-1):
+    m=1
+    for j in range(i,len(a)):
+        m*=a[j]
+        if m>pro:
+            pro=m
+print(pro)
+
+
+---------- Time complexity - O(n) , Space complexity - O(n) ------------------
+
+a = list(map(int,input().split()))
+mi=a[0]
+ma=a[0]
+ans=a[0]
+for i in range(1,len(a)):
+    if a[i]>0:
+        ma=max(a[i],ma*a[i])
+        mi=min(a[i],mi*a[i])
+        ans=max(ans,ma)
+    else:
+        temp=ma
+        ma=mi
+        mi=temp
+        ma=max(a[i],ma*a[i])
+        mi=min(a[i],mi*a[i])
+        ans=max(ans,ma)
+print(ans)
+        
