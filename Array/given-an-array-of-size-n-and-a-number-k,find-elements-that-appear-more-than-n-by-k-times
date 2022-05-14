@@ -1,0 +1,18 @@
+Problem :
+
+Given an array of size n, find all elements in array that appear more than n/k times.
+For example, if the input arrays is {3, 1, 2, 2, 1, 2, 3, 3} and k is 4, then the output should be [2, 3].
+
+
+Solution :
+
+n=int(input())
+a=list(map(int,input().split()))[:n]
+k=int(input())
+l=[]
+s=set(a)
+for i in s:
+    if a.count(i)>n/k:
+        l.append(i)
+print(l)
+        
