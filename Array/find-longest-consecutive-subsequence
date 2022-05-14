@@ -1,0 +1,61 @@
+Problem :
+
+Given an array of positive integers. 
+Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+ 
+Example 1:
+Input:
+N = 7
+a[] = {2,6,1,9,4,5,3}
+Output:
+6
+Explanation:
+The consecutive numbers here
+are 1, 2, 3, 4, 5, 6. These 6 
+numbers form the longest consecutive
+subsquence.
+
+Example 2:
+Input:
+N = 7
+a[] = {1,9,3,10,4,20,2}
+Output:
+4
+Explanation:
+1, 2, 3, 4 is the longest
+consecutive subsequence.
+
+
+Solution :
+
+--------------- Time Complexity O(n log n) ---------------------
+n=int(input())
+arr=list(map(int,input().split()))[:n]
+arr.sort()
+c=1
+maxi=0
+
+for i in range(0,len(arr)-1):
+    if arr[i+1]-arr[i]==1:
+        c+=1
+        if maxi<c:
+            maxi=c
+    else:
+        c=1
+print(maxi)
+
+---------------- Time Complexity O(n) ----------------------------
+
+n=int(input())
+a=list(map(int,input().split()))[:n]
+a=set(a)
+maxi=0
+for i in range(0,len(a)):
+    if i-1 not in a:
+        j=i
+        while j in a:
+            j+=1
+            if(maxi<j-i):
+                maxi=j-i
+print(maxi)
+    
