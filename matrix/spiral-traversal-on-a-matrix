@@ -1,0 +1,46 @@
+Problem :
+
+Given a matrix of size r*c. Traverse the matrix in spiral form.
+
+Example 1:
+Input:
+r = 4, c = 4
+matrix[][] = {{1, 2, 3, 4},
+           {5, 6, 7, 8},
+           {9, 10, 11, 12},
+           {13, 14, 15,16}}
+Output: 
+1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+Solution :
+
+r = int(input())
+c = int(input())
+matrix=[]
+for i in range(r):
+    a=[]
+    for i in range(c):
+        a.append(int(input()))
+    matrix.append(a)
+l=[]
+startrow=0
+startcolumn=0
+endrow=r-1
+endcolumn=c-1
+while startrow<=endrow and startcolumn<=endcolumn:
+    for i in range(startcolumn,endcolumn+1):
+        l.append(matrix[startrow][i])
+    startrow+=1
+    for i in range(startrow,endrow+1):
+        l.append(matrix[i][endcolumn])
+    endcolumn-=1
+    if startrow<=endrow:
+        for i in range(endcolumn,startcolumn-1,-1):
+            l.append(matrix[endrow][i])
+        endrow-=1
+    if startcolumn<=endcolumn:
+        for i in range(endrow,startrow-1,-1):
+            l.append(matrix[i][startcolumn])
+        startcolumn+=1
+print(l)
