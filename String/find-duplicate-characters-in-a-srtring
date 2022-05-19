@@ -1,0 +1,19 @@
+Problem :
+
+Print all the duplicates in the input string.
+
+Example :
+Input :   s="test string"
+Output :  s, count = 2 
+          t, count = 3 
+          
+          
+Solution :
+
+s=input()
+l=[]
+for i in s:
+    if i not in l and s.count(i)>1:
+        l.append(i)
+        cnt=s.count(i)
+        print(i+", count = "+str(s.count(i)))
