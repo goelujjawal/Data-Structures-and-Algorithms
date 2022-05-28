@@ -1,0 +1,29 @@
+arr=[2,4,6,8,12,18]
+key=8
+def binary_search(arr,key):
+    start=0
+    end=len(arr)-1
+    mid=start+((end-start)//2)
+    while start<=end:
+        if arr[mid]==key:
+            return mid
+        elif arr[mid]>key:
+            end=mid-1
+        else:
+            start=mid+1
+        mid=start+((end-start)//2)
+    return -1
+print(binary_search(arr,key))
+
+
+
+Space Complexity : O(1)
+
+Time Complwxity : O(log n) (worst case)
+                  O(1) (best case)
+               
+Use Case:
+
+We use binary search when the array is sorted.
+
+When we can neglect left or right part by finding a Possible/NotPossible solution on a sorted answer search space. We can use Binary Search.
