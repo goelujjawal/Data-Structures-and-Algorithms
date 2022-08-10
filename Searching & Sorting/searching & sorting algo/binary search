@@ -1,3 +1,7 @@
+Where to apply Binary Search? 
+//where elements should be in monotonic functions i.e. either in increasing order or in decreasing order.
+
+
 arr=[2,4,6,8,12,18]
 key=8
 def binary_search(arr,key):
