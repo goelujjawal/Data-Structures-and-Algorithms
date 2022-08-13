@@ -1,5 +1,5 @@
 a=[3,5,1,7,6,2]
-for i in range(0,len(a)):
+for i in range(0,len(a)-1):
     min_index=i
     for j in range(i+1,len(a)):
         if a[j]<a[min_index]:
