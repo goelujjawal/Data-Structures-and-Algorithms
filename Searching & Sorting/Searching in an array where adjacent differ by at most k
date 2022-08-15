@@ -1,0 +1,44 @@
+Problem :
+
+A step array is an array of integer where each element has a difference of at most k with its neighbor.
+Given a key x, we need to find the index value of x if multiple elements exist, return the first occurrence of the key.
+
+Example 1:
+Input : arr[ ] = {4, 5, 6, 7, 6}, K = 1 
+        and X = 6
+Output : 2
+Explanation:
+In an array arr 6 is present at index 2.
+So, return 2.
+
+Example 2:
+Input : arr[ ] = {20 40 50}, K = 20 
+        and X = 70
+Output :  -1 
+
+
+Solution :
+-------------------------- Simple approach [ TC - O(n) , SC - O(1) ]-------------------
+
+arr=list(map(int,input().split()))
+k=int(input())
+x=int(input())
+ans=-1
+for i in range(0,len(arr)):
+    if arr[i]==x:
+        ans=i
+        break
+print(ans)
+
+------------------------ Optimised approach [ TC - O(n) , SC - O(1) ]-------------------
+
+arr=list(map(int,input().split()))
+k=int(input())
+x=int(input())
+ans=-1
+for i in range(0,len(arr)):
+    if arr[i]==x:
+        ans=i
+        break
+    i=i+max(1,abs(arr[i]-x)/k)
+print(ans)
