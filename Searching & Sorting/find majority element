@@ -45,7 +45,7 @@ def majorityElement(A, N):
             if count==0:
                 ele=A[i]
             if A[i]==ele:
-                count+=1
+                count+=1                                             // This is known as Moore's Voting Algorithm.
             else:
                 count-=1
         count=0
