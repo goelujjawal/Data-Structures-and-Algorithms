@@ -1,0 +1,82 @@
+Problem :
+
+Given an array of integers and another number. Find all the unique quadruple from the given array that sums up to the given number.
+
+Example 1:
+Input:
+N = 5, K = 3
+A[] = {0,0,2,1,1}
+Output: 0 0 1 2 $
+Explanation: Sum of 0, 0, 1, 2 is equal
+to K.
+
+Example 2:
+Input:
+N = 7, K = 23
+A[] = {10,2,3,4,5,7,8}
+Output: 2 3 8 10 $2 4 7 10 $3 5 7 8 $
+Explanation: Sum of 2, 3, 8, 10 = 23,
+sum of 2, 4, 7, 10 = 23 and sum of 3,
+5, 7, 8 = 23.
+
+
+Solution :
+
+--------------------- TC-O(N*4 LogN) ---------------------
+n= 7
+target= 23
+arr = [10,2,3,4,5,7,8]
+s=0
+li=[]
+for i in range(0,n-3):
+    for j in range(i+1,n-2):
+        for k in range(j+1,n-1):
+            for l in range(k+1,n):
+                s=0 
+                s=arr[i]+arr[j]+arr[k]+arr[l]
+                if s==target:
+                    t=[]
+                    t.append(arr[i])
+                    t.append(arr[j])
+                    t.append(arr[k])
+                    t.append(arr[l])
+                    t.sort()
+                    if t not in li:
+                        li.append(t)
+for i in li:
+    for j in i:
+        print(j,end=' ')
+    print('$',end=' ')
+    
+----------------------- TC-O(N*3 LogN)---------------
+n= 7
+target= 23
+arr = [10,2,3,4,5,7,8]
+arr.sort()
+li=[]
+for i in range(0,n-3):
+    if i>0 and arr[i]==arr[i-1]:
+        continue
+    for j in range(i+1,n-2):
+        if j>i+1 and arr[j]==arr[j-1]:
+            continue
+        tsum=target-(arr[i]+arr[j])
+        l=j+1
+        h=n-1
+        while l<h:
+            if arr[l]+arr[h]==tsum:
+                li.append([arr[i],arr[j],arr[l],arr[h]])
+                while l<h and arr[l]==arr[l+1]:
+                    l+=1
+                while l<h and arr[h]==arr[h-1]:
+                    h-=1
+                l+=1
+                h-=1
+            elif arr[l]+arr[h]<tsum:
+                l+=1
+            else:
+                h-=1
+for i in li:
+    for j in i:
+        print(j,end=' ')
+    print('$',end=' ')
