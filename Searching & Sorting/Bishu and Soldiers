@@ -1,0 +1,59 @@
+Problem:
+
+Bishu went to fight for Coding Club. There were N soldiers with various powers. There will be Q rounds to fight and in each round, Bishu's power will be varied.
+With power M, Bishu can kill all the soldiers whose power is less than or equal to M(<=M).
+After each round, All the soldiers who are dead in the previous round will reborn. Such that in each round there will be N soldiers to fight.
+As Bishu is weak in mathematics, help him to count the number of soldiers that he can kill in each round and the total sum of their powers.
+
+INPUT:
+The first line of the input contains N, the number of soldiers.
+The second line contains an array of N numbers denoting the power of each soldier
+This third line contains Q, which denotes the number of rounds.
+Q lines follow, each line having one number denoting the power of Bishu.
+
+7
+1 2 3 4 5 6 7
+3
+3
+10
+2
+
+OUTPUT:
+For each round, the output should be an array of two numbers.
+The first number should be the number of soldiers that Bishu can beat, and the second number denotes the cumulative strength of all the soldiers that Bishu can beat.
+
+3 6
+7 28
+2 3
+
+
+Solution:
+
+def bishu(a,x,l):
+    s=0
+    e=len(a)-1
+    mid=s+(e-s)//2
+    while s<=e:
+        if a[mid]<=x:
+            res=a[mid]
+            res2=l[mid]
+            s=mid+1
+        else:
+            e=mid-1
+        mid=s+(e-s)//2
+    return "{} {}".format(res,res2)
+
+n=int(input())
+a=list(map(int,input().split()))[:n]
+q=int(input())
+ans=[]
+a.sort()
+l=[0]*n
+l[0]=a[0]
+for i in range(1,len(a)):
+    l[i]=l[i-1]+a[i]
+for i in range(q):
+    x=int(input())
+    ans.append(bishu(a,x,l))
+for i in ans:
+    print(i)
