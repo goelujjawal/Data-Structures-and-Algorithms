@@ -1,0 +1,105 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        
+class LinkedList:
+    def __init__(self):
+        self.head=None
+        
+    def insertatbeg(self,new_data):
+        new_node=Node(new_data)
+        
+        new_node.next=self.head
+        self.head=new_node
+        
+    def insertatend(self,new_data):
+        new_node=Node(new_data)
+        
+        if self.head is None:
+            self.head=new_node
+            return
+        
+        last_node=self.head
+        while last_node.next!=None:
+            last_node=last_node.next
+        last_node.next=new_node
+        
+    def insertatpos(self,pos,new_data):
+        new_node=Node(new_data)
+        if pos==1:
+            LinkedList.insertatbeg(self,new_data)
+            return
+        cnt=1
+        temp=self.head
+        while cnt<pos-1:
+            temp=temp.next
+            cnt+=1
+        if temp.next==None:
+            LinkedList.insertatend(self,new_data)
+            return    
+        new_node.next=temp.next
+        temp.next=new_node
+        
+    def deletenode(self,pos):
+        if self.head is None:
+            return
+        temp=self.head
+        if pos==1:
+            self.head=temp.next
+            temp=None
+            return
+        for i in range(pos-2):
+            temp=temp.next
+            if temp is None:
+                break
+        if temp is None:
+            return
+        if temp.next is None:
+            return
+        temp2=temp.next.next
+        temp.next=None
+        temp.next=temp2
+        
+    def search(self,key):
+        curr=self.head
+        while curr is not None:
+            if curr.data==key:
+                return True
+            curr=curr.next
+        return False
+        
+    def sortlinkedlist(self):
+        curr=self.head
+        index=Node(None)
+        
+        if self.head is None:
+            return
+        while curr is not None:
+            index=curr.next
+            while index is not None:
+                if curr.data>index.data:
+                    curr.data,index.data=index.data,curr.data
+                index=index.next
+            curr=curr.next
+            
+    
+            
+    def printList(self):
+        temp = self.head
+        while (temp):
+            print(temp.data, end=" ")
+            temp = temp.next
+        
+llist=LinkedList()
+
+llist.head=Node(30)
+second=Node(10)
+third=Node(20)
+
+llist.head.next=second
+second.next=third
+
+llist.insertatpos(4,50)
+llist.sortlinkedlist()
+llist.printList()
