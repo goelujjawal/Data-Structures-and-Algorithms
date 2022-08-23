@@ -1,0 +1,108 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        
+class LinkedList:
+    def __init__(self):
+        self.head=None
+        
+    def insertatemptylist(self,new_data):
+        new_node=Node(new_data)
+        if self.head!=None:
+            return self.head
+        self.head=new_node
+        new_node.next=new_node
+        
+    def insertatbeg(self,new_data):
+        new_node=Node(new_data)
+        
+        temp=self.head
+        while temp.next!=self.head:
+            temp=temp.next
+        new_node.next=temp.next
+        temp.next=new_node
+        self.head=new_node
+        
+    def insertatend(self,new_data):
+        new_node=Node(new_data)
+        
+        if self.head is None:
+            self.head=new_node
+            return
+        
+        temp=self.head
+        while temp.next!=self.head:
+            temp=temp.next
+        new_node.next=temp.next
+        temp.next=new_node
+        
+    def insertatpos(self,pos,new_data):
+        new_node=Node(new_data)
+        if pos==1:
+            LinkedList.insertatbeg(self,new_data)
+            return
+        cnt=1
+        temp=self.head
+        while cnt<pos-1:
+            temp=temp.next
+            cnt+=1
+        new_node.next=temp.next
+        temp.next=new_node
+        
+    def deletenode(self,pos):
+        if self.head is None:
+            return
+        
+        if self.head.next==self.head:
+            self.head=None
+            return
+        
+        temp=self.head
+        
+        if pos==1:
+            while temp.next!=self.head:
+                temp=temp.next
+            temp.next=self.head.next
+            self.head=None
+            self.head=temp.next
+            return
+ 
+        for i in range(pos-2):
+            temp=temp.next
+            if temp is None:
+                break
+        if temp is None:
+            return
+        if temp.next is None:
+            return
+        temp2=temp.next.next
+        temp.next=None
+        temp.next=temp2
+        
+    def printList(self):
+        if self.head==None:
+            return
+        temp = self.head
+        if temp.next==self.head:
+            print(temp.data)
+        else:
+            while (temp.next!=self.head):
+                print(temp.data, end=" ")
+                temp = temp.next
+            print(temp.data)
+            
+        
+llist=LinkedList()
+
+llist.head=Node(10)
+second=Node(20)
+third=Node(30)
+fourth=Node(40)
+
+llist.head.next=second
+second.next=third
+third.next=fourth
+fourth.next=llist.head
+
+llist.printList()
