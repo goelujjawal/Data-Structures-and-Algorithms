@@ -1,0 +1,33 @@
+Solution:
+
+class Solution:
+    def copyList(self, head):
+        curr=head
+        while curr:
+            temp=curr.next
+            newnode=Node(curr.data)
+            curr.next=newnode
+            newnode.next=temp
+            curr=temp
+            
+        curr=head
+        while curr!=None:
+            if curr.arb!=None:
+                curr.next.arb=curr.arb.next
+            else:
+                curr.next.arb=curr.arb
+            curr=curr.next.next
+                
+        original=head
+        copy=head.next
+        temp=copy
+        while(original and copy):
+            original.next=original.next.next
+            if copy.next!=None:
+                copy.next=copy.next.next
+            else:
+                copy.next=copy.next
+            original=original.next
+            copy=copy.next
+        return temp
+        
