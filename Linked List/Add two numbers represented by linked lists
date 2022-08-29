@@ -22,3 +22,60 @@ M = 1
 valueM[] = {7}
 Output: 7 0
 Explanation: For the given two linked list (6 3) and (7), after adding the two linked list resultant linked list will be (7 0).
+
+
+
+Solution :
+
+class Solution:
+    def rev(head):
+        prev=None
+        curr=head
+        while curr!=None:
+            forward=curr.next
+            curr.next=prev
+            prev=curr
+            curr=forward
+        return prev
+ 
+    def add(first,second):
+        anshead=None
+        anstail=None
+        carry=0
+        s=0
+        while first!=None or second!=None:
+            val1=0
+            if first!=None:
+                val1=first.data
+            val2=0
+            if second!=None:
+                val2=second.data
+            s=val1 + val2 + carry
+            if s>=10:
+                carry=1
+            else:
+                carry=0
+            s=s%10
+            newnode=Node(s)
+            if anshead==None:
+                anshead=newnode
+                anstail=newnode
+            else:
+                anstail.next=newnode
+                anstail=newnode
+            if first!=None:
+                first=first.next
+            if second!=None:
+                second=second.next
+        if carry>0:
+            newnode=Node(carry)
+            anstail.next=newnode
+            anstail=newnode
+        return anshead
+            
+    def addTwoLists(self, first, second):
+        first=Solution.rev(first)
+        second=Solution.rev(second)
+        ans=Solution.add(first,second)
+        ans=Solution.rev(ans)
+        return ans
