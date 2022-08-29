@@ -1,0 +1,48 @@
+Problem : 
+
+A number N is represented in Linked List such that each digit corresponds to a node in linked list. You need to add 1 to it.
+
+Example 1:
+Input:
+LinkedList: 4->5->6
+Output: 457 
+
+Example 2:
+Input:
+LinkedList: 1->2->3
+Output: 124 
+
+
+Solution :
+
+class Solution:
+    def rev(head):
+        prev=None
+        curr=head
+        while curr!=None:
+            forward=curr.next
+            curr.next=prev
+            prev=curr
+            curr=forward
+        return prev
+    
+    def addOne(self,head):
+        head=Solution.rev(head)
+        temp=head
+        flag=True
+        while temp!=None and flag==True:
+            if temp.data==9 and temp.next==None:
+                temp.data=1
+                newnode=Node(0)
+                newnode.next=head
+                head=newnode
+                temp=temp.next
+            elif temp.data==9:
+                temp.data=0
+                temp=temp.next
+            else:
+                temp.data=temp.data+1
+                temp=temp.next
+                flag=False
+        head=Solution.rev(head)
+        return head
