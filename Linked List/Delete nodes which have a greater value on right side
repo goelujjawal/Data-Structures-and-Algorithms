@@ -1,0 +1,44 @@
+Prolem :
+
+Given a singly linked list, remove all the nodes which have a greater value on their right side.
+
+Example 1:
+Input:
+LinkedList = 12->15->10->11->5->6->2->3
+Output: 15 11 6 3
+Explanation: Since, 12, 10, 5 and 2 are the elements which have greater elements on the following nodes. So, after deleting them, the linked list would like be 15,11,6,3.
+
+Example 2:
+Input:
+LinkedList = 10->20->30->40->50->60
+Output: 60
+
+Solution :
+
+class Solution:
+    def rev(head):
+        prev=None
+        curr=head
+        while curr!=None:
+            forward=curr.next
+            curr.next=prev
+            prev=curr
+            curr=forward
+        return prev
+        
+    def compute(self,head):
+        head=Solution.rev(head)
+        curr=head
+        ma=head.data
+        prev=head
+        head=head.next
+        while head!=None:
+            if head.data>=ma:
+                ma=head.data
+                prev=head
+                head=head.next
+            else:
+                prev.next=head.next
+                head=prev.next
+        head=Solution.rev(curr)
+        return head
