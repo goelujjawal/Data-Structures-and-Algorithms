@@ -1,0 +1,53 @@
+Problem:
+
+Given a sorted doubly linked list of distinct nodes(no two nodes have the same data) and a value x. Count triplets in the list that sum up to a given value x.
+
+
+Solution :
+
+--------- Method 1 (Naive Approach) TC- O(n**3) , SC - O(1) -------------------
+def countTriplets( head, x):
+    ptr1 = head
+    ptr2 = None
+    ptr3 = None
+    count = 0
+    while (ptr1 != None ):
+        ptr2 = ptr1.next
+        while ( ptr2 != None ):
+            ptr3 = ptr2.next
+            while ( ptr3 != None ):
+                if ((ptr1.data + ptr2.data + ptr3.data) == x):
+                    count = count + 1
+                ptr3 = ptr3.next
+            ptr2 = ptr2.next
+        ptr1 = ptr1.next
+    return count
+    
+    
+ ------------ Method 2 Efficient Approach(Use of two pointers)  TC- O(n**2) , SC - O(1) -------------------
+ def countPairs(first, second, value): 
+    count = 0
+    while (first != None and second != None and first != second and second.next != first):
+        if ((first.data + second.data) == value):
+            count += 1
+            first = first.next
+            second = second.prev
+        elif ((first.data + second.data) > value):
+            second = second.prev
+        else:
+            first = first.next
+    return count
+  
+def countTriplets(head, x):
+    if (head == None):
+        return 0
+    current, first, last = head, None, None
+    count = 0
+    last = head
+    while (last.next != None):
+        last = last.next
+    while current != None:
+        first = current.next
+        count, current = count + countPairs(
+            first, last, x - current.data), current.next
+    return count
