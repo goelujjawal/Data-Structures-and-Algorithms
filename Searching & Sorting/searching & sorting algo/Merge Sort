@@ -1,0 +1,71 @@
+def merge(arr,s,e):
+    mid=s+(e-s)//2
+    len1=mid-s+1
+    len2=e-mid
+    first=[None]*len1
+    second=[None]*len2
+    mainArrayIndex=s
+    for i in range(0,len1):
+        first[i]=arr[mainArrayIndex]
+        mainArrayIndex+=1
+    mainArrayIndex=mid+1
+    for i in range(0,len2):
+        second[i]=arr[mainArrayIndex]
+        mainArrayIndex+=1
+    index1=0
+    index2=0
+    mainArrayIndex=s
+    while index1<len1 and index2<len2:
+        if first[index1]<second[index2]:
+            arr[mainArrayIndex]=first[index1]
+            index1+=1
+        else:
+            arr[mainArrayIndex]=second[index2]
+            index2+=1
+        mainArrayIndex+=1
+    while index1<len1:
+        arr[mainArrayIndex]=first[index1]
+        index1+=1
+        mainArrayIndex+=1
+    while index2<len2:
+        arr[mainArrayIndex]=second[index2]
+        index2+=1
+        mainArrayIndex+=1
+    first=None
+    second=None
+
+def mergeSort(arr,s,e):
+    if s>=e:
+        return
+    mid=s+(e-s)//2
+    mergeSort(arr,s,mid)
+    mergeSort(arr,mid+1,e)
+    merge(arr,s,e)
+
+def printArray(A, size):
+    for i in range(size):
+        print(A[i], end=" ")
+    print()
+  
+if __name__ == '__main__':
+    arr = [12, 11, 13, 5, 6, 7]
+    arr_size = len(arr)
+  
+    mergeSort(arr, 0, arr_size - 1)
+    printArray(arr, arr_size)
+    
+    
+    
+Properties of merge sort :
+1. Merge sort is stable. 
+2. Merge Sort is useful for sorting linked lists in O(nLogn) time.
+
+Applications of Merge Sort: 
+1. Inversion Count Problem
+2. Used in External Sorting
+
+Drawbacks of Merge Sort:
+1. Slower comparative to the other sort algorithms for smaller tasks.
+2. The merge sort algorithm requires an additional memory space of 0(n) for the temporary array.
+3. It goes through the whole process even if the array is sorted.
+
