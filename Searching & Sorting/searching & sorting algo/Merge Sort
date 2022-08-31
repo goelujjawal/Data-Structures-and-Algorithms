@@ -55,6 +55,7 @@ if __name__ == '__main__':
     printArray(arr, arr_size)
     
     
+TC - O(n log n) , SC - O(n)
     
 Properties of merge sort :
 1. Merge sort is stable. 
