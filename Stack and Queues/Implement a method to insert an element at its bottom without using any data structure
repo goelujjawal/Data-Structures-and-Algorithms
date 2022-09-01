@@ -1,0 +1,21 @@
+def solve(s,n):
+    if len(s)==0:
+        s.append(n)
+        return
+    temp=s[len(s)-1]
+    s.pop()
+    solve(s,n)
+    s.append(temp)
+
+def insertToBottom(S, N):
+    solve(S,N)
+    return S
+
+S =[]
+S.append(5)
+S.append(14)
+S.append(3)
+S.append(20)
+S.append(1)
+N = 17
+print(insertToBottom(S, N))
