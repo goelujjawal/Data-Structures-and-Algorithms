@@ -1,0 +1,39 @@
+Given an expression string x. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
+For example, the function should return 'true' for exp = “[()]{}{[()()]()}” and 'false' for exp = “[(])”.
+
+Example 1:
+Input:
+{([])}
+Output: 
+true
+
+Input: 
+()
+Output: 
+true
+
+Input: 
+([]
+Output: 
+false
+
+Solution :
+
+class Solution:
+    def ispar(self,x):
+        stack=[]
+        for i in range(len(x)):
+            if x[i]=='{' or x[i]=='[' or x[i]=='(':
+                stack.append(x[i])
+            else:
+                if len(stack)!=0:
+                    if((x[i]=='}' and stack[len(stack)-1]=='{') or (x[i]==')' and stack[len(stack)-1]=='(') or (x[i]==']' and stack[len(stack)-1]=='[')):
+                        stack.pop()
+                    else:
+                        return False
+                else:
+                    return False
+        if len(stack)==0:
+            return True
+        else:
+            return False
