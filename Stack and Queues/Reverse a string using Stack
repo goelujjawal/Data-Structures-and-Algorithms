@@ -1,0 +1,13 @@
+You are given a string S, the task is to reverse the string using stack.
+Example 1:
+Input: S="GeeksforGeeks"
+Output: skeeGrofskeeG
+
+Soution :
+
+def reverse(S):
+  stack=list(S)
+  ans=''
+  for i in range(len(S)):
+      ans+=stack.pop()
+  return ans
