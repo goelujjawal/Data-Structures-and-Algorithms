@@ -1,0 +1,27 @@
+def checkRedundancy(s):
+    stack=[]
+    for i in range(len(s)):
+        if s[i]=='(' or s[i]=='+' or s[i]=='-' or s[i]=='*' or s[i]=='/':
+            stack.append(s[i])
+        else:
+            if s[i]==')':
+                isredundant=True
+                while stack[len(stack)-1]!='(':
+                    temp=stack[len(stack)-1]
+                    if temp=='+' or temp=='-' or temp=='*' or temp=='/':
+                        isredundant=False
+                    stack.pop()
+                if isredundant==True:
+                    return True
+                stack.pop()
+
+def findRedundant(Str):
+    ans = checkRedundancy(Str)
+    if (ans == True):
+        print("Yes")
+    else:
+        print("No")
+ 
+Str = "((a+b))"
+findRedundant(Str)
+ 
