@@ -26,17 +26,29 @@ pop2()   the stack2 is now empty hence -1 .
 Solution:
 
 def push1(a,x):
-    a.insert(0,x)
-
+    global top1
+    if (top2-top1)>1:
+        top1+=1
+        a[top1]=x
+    
 def push2(a,x):
-    a.insert(len(a),x)
+    global top2
+    if top2-top1>1:
+        top2-=1
+        a[top2]=x
     
 def pop1(a):
-    if len(a):
-        return a.pop(0)
+    global top1
+    if top1>=0:
+        ans=a[top1]
+        top1-=1
+        return ans
     return -1
-    
+       
 def pop2(a):
-    if len(a):
-        return a.pop(-1)
+    global top2
+    if top2<len(a):
+        ans=a[top2]
+        top2+=1
+        return ans
     return -1
