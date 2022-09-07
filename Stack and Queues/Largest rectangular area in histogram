@@ -1,0 +1,55 @@
+Porblem :
+
+Find the largest rectangular area possible in a given histogram where the largest rectangle can be made of a number of contiguous bars.
+For simplicity, assume that all bars have the same width and the width is 1 unit, there will be N bars height of each bar will be given by the array arr.
+
+Example 1:
+Input:
+N = 7
+arr[] = {6,2,5,4,5,1,6}
+Output: 12
+
+
+Solution :
+
+class Solution:
+    
+    def nextSmallerElement(arr,n):
+        ans=[0]*n
+        stack=[]
+        for i in range(len(arr)-1,-1,-1):
+            while len(stack)>0 and arr[stack[-1]]>=arr[i]:
+                stack.pop()
+            if len(stack)==0:
+                ans[i]=-1
+            else:
+                ans[i]=stack[-1]
+            stack.append(i)
+        return ans 
+        
+    def prevSmallerElement(arr,n):
+        ans=[0]*n
+        stack=[]
+        for i in range(len(arr)):
+            while len(stack)>0 and arr[stack[-1]]>=arr[i]:
+                stack.pop()
+            if len(stack)==0:
+                ans[i]=-1
+            else:
+                ans[i]=stack[-1]
+            stack.append(i)
+        return ans 
+    
+    def getMaxArea(self,histogram):
+        n=len(histogram)
+        nextindex=Solution.nextSmallerElement(histogram,n)
+        previndex=Solution.prevSmallerElement(histogram,n)
+        area=min(histogram)
+        for i in range(n):
+            l=histogram[i]
+            if nextindex[i]==-1:
+                nextindex[i]=n
+            b=nextindex[i]-previndex[i]-1
+            newArea=l*b
+            area=max(area,newArea)
+        return area
