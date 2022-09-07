@@ -23,7 +23,7 @@ arr = [2,1,4,3]
 nextSmallerElement(arr)
 
 --------------------- TC - O(n) , SC - O(n) ------------------
-def nextLargerElement(arr,n):
+def nextSmallerElement(arr,n):
         ans=[0]*n
         stack=[]
         for i in range(len(arr)-1,-1,-1):
@@ -37,4 +37,4 @@ def nextLargerElement(arr,n):
         return ans 
         
 arr = [2,1,4,3]
-print(nextLargerElement(arr,len(arr)))
+print(nextSmallerElement(arr,len(arr)))
