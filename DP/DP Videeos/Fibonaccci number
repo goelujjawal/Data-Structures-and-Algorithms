@@ -1,3 +1,14 @@
+------------------- Recursion approach --------------------------------------------
+def recur_fibo(n):  
+   if n <= 1:  
+       return n  
+   else:  
+       return(recur_fibo(n-1) + recur_fibo(n-2))  
+
+n = int(input())  
+for i in range(n):  
+    print(recur_fibo(i),end=' ') 
+    
 ------------------- Top Down Approach (TC-O(n), SC-O(n)) ---------------------------
 def fibo(n):
     dp=[-1 for i in range(n+1)]
