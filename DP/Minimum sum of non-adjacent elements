@@ -1,0 +1,78 @@
+-------------- Recursive approach ---------------
+
+def solve(l,n):
+    if n<0:
+        return 0
+    if n==0:
+        return l[0]
+    incl=l[n]+solve(l,n-2)
+    excl=solve(l,n-1)
+    return max(incl,excl)
+    
+t=int(input())
+for i in range(t):
+    n=int(input())
+    l=list(map(int,input().strip().split()))[:n]
+    ans=solve(l,n-1)
+    print(ans)
+    
+---------------- Top Down approach ------------------
+
+def solve(l,n,dp):
+    if n<0:
+        return 0
+    if n==0:
+        return l[0]
+    if dp[n]!=-1:
+        return dp[n]
+    incl=l[n]+solve(l,n-2,dp)
+    excl=solve(l,n-1,dp)
+    dp[n]=max(incl,excl)
+    return dp[n]
+    
+t=int(input())
+for i in range(t):
+    n=int(input())
+    l=list(map(int,input().strip().split()))[:n]
+    dp=[-1 for i in range(n+1)]
+    ans=solve(l,n-1,dp)
+    print(ans)
+    
+---------------- Bottom up approach ------------------
+
+def solve(l,n):
+    dp=[0 for i in range(n+1)]
+    dp[0]=l[0]
+    for i in range(1,n):
+        incl=l[i]+dp[i-2]
+        excl=dp[i-1]
+        dp[i]=max(incl,excl)
+    return dp[n-1]
+    
+t=int(input())
+for i in range(t):
+    n=int(input())
+    l=list(map(int,input().strip().split()))[:n]
+    ans=solve(l,n)
+    print(ans)
+    
+----------- Space optimization --------------------------
+
+def solve(l,n):
+    prev2=0
+    prev1=l[0]
+    for i in range(1,n):
+        incl=l[i]+prev2
+        excl=prev1
+        curr=max(incl,excl)
+        prev2=prev1
+        prev1=curr
+    return prev1
+    
+t=int(input())
+for i in range(t):
+    n=int(input())
+    l=list(map(int,input().strip().split()))[:n]
+    ans=solve(l,n)
+    print(ans)  
+
