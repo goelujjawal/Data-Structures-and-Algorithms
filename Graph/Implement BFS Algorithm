@@ -1,0 +1,32 @@
+Problem :
+
+https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+
+Solution :
+
+def bfs(g,visited):
+    queue=[]
+    ans=[]
+    queue.append(0)
+    visited[0]=True
+    while queue:
+        temp=queue.pop(0)
+        ans.append(temp)
+        for i in g[temp]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i]=True
+    return ans
+        
+ip=[[0,1],[0,2],[0,3],[2,4]]
+g={}
+visited={}
+n=5
+for i in range(n):
+    g[i]=[]
+    visited[i]=False
+    
+for (u,v) in ip:
+    g[u].append(v)
+    
+print(bfs(g,visited))
