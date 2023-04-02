@@ -1,0 +1,39 @@
+Problem :
+
+https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+Solution :
+
+-----------------------------------------gfg--------------------------------------------
+def dfsOfGraph(self, V, adj):
+        # code here
+        visited=[]
+        def dfs(node):
+            if node not in visited:
+                visited.append(node)
+                for i in adj[node]:
+                    dfs(i)
+        dfs(0)
+        return visited
+        
+--------------------------------------scratch--------------------------------------------------   
+ 
+def dfs(g,node,visited=[]):
+    if node not in visited:
+        print(node)
+        visited.append(node)
+        for i in g[node]:
+            dfs(g,i,visited)
+        
+        
+ip=[[0,2],[0,3],[0,1],[2,4]]
+g={}
+n=5
+for i in range(n):
+    g[i]=[]
+    
+for (u,v) in ip:
+    g[u].append(v)
+    g[v].append(u)
+    
+print(dfs(g,0))
