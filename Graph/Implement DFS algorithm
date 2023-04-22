@@ -5,16 +5,18 @@ https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?
 Solution :
 
 -----------------------------------------gfg--------------------------------------------
-def dfsOfGraph(self, V, adj):
+class Solution:
+    def dfs(self,node):
+        self.visited.append(node)
+        for i in adj[node]:
+            if i not in self.visited:    
+                self.dfs(i)
+        
+    def dfsOfGraph(self, V, adj):
         # code here
-        visited=[]
-        def dfs(node):
-            visited.append(node)
-            for i in adj[node]:
-                if i not in visited:
-                    dfs(i)
-        dfs(0)
-        return visited
+        self.visited=[]
+        self.dfs(0)
+        return self.visited
         
 --------------------------------------scratch--------------------------------------------------   
  
