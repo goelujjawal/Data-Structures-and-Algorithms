@@ -1,0 +1,27 @@
+Problem :  https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+Solution :
+
+------------------------------------ using DFS algo ---------------------------------------------
+
+class Solution:
+    def dfs(self,node,adj,visited,recStack):
+        visited[node]=True
+        recStack[node]=True
+        for i in adj[node]:
+            if visited[i]==False:
+                if self.dfs(i,adj,visited,recStack)==True:
+                    return True
+            elif recStack[i]==True:
+                return True
+        recStack[node]=False
+        return False
+    
+    def isCyclic(self, V, adj):
+        visited=[False]*V
+        recStack=[False]*V
+        for i in range(0,V):
+            if visited[i]==False:
+                if self.dfs(i,adj,visited,recStack)==True:
+                    return True
+        return False
