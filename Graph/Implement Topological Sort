@@ -1,0 +1,46 @@
+Problem :  https://practice.geeksforgeeks.org/problems/topological-sort/1
+
+Solution :
+
+---------------------------------------------using DFS approach --------------------------------
+class Solution:
+    def dfs(self,node,stack,visited,adj):
+        visited[node]=True
+        for i in adj[node]:
+            if visited[i]==False:
+                self.dfs(i,stack,visited,adj)
+        stack.insert(0,node)
+        
+    def topoSort(self, V, adj):
+        visited=[False]*V
+        stack=[]
+		    for i in range(0,V):
+            if visited[i]==False:
+                self.dfs(i,stack,visited,adj)
+        ans=[]
+        return stack
+        
+--------------------------------------using BFS approach (kahn's algo) -----------------------------
+
+class Solution:
+  def bfs(self,node,adj,V,indeg):
+        queue=[]
+        for i in range(V):
+            if indeg[i]==0:
+                queue.append(i)
+        ans=[]
+        while len(queue)!=0:
+            curr=queue.pop()
+            ans.append(curr)
+            for i in adj[curr]:
+                indeg[i]-=1
+                if indeg[i]==0:
+                    queue.append(i)
+        return ans
+                
+    def topoSort(self, V, adj):
+        indeg=[0]*V
+        for i in range(V):
+            for j in adj[i]:
+                indeg[j]+=1
+        return self.bfs(0,adj,V,indeg)
