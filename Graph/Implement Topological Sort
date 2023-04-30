@@ -14,7 +14,7 @@ class Solution:
     def topoSort(self, V, adj):
         visited=[False]*V
         stack=[]
-		    for i in range(0,V):
+	for i in range(0,V):
             if visited[i]==False:
                 self.dfs(i,stack,visited,adj)
         ans=[]
