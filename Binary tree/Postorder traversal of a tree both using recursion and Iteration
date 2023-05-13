@@ -1,0 +1,55 @@
+------------------ Recursive approach -----------------------
+
+class Node:
+    def __init__(self,key):
+        self.left=None
+        self.right=None
+        self.val=key
+    
+def printPostorder(root):
+    if root:
+        printPostorder(root.left)
+        printPostorder(root.right)
+        print(root.val,end=' ')
+      
+            
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+printPostorder(root)
+
+Output : 4 5 2 3 1
+
+------------------ Iterative approach -----------------------
+
+class Node:
+    def __init__(self,key):
+        self.left=None
+        self.right=None
+        self.val=key
+        
+def printPostorder(root):
+    stack=[]
+    stack.append(root)
+    out=[]
+    while stack:
+        curr=stack.pop()
+        out.append(curr.val)
+        
+        if curr.left:
+            stack.append(curr.left)
+        if curr.right:
+            stack.append(curr.right)
+            
+    while out:
+        print(out.pop(), end=' ')
+            
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+printPostorder(root)
+        
