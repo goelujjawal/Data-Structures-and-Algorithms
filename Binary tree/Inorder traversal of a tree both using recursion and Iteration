@@ -28,7 +28,6 @@ def printInorder(root):
     curr=root
     while stack or curr:
         if curr:
-            print("if curr is",curr.val)
             stack.append(curr)
             curr=curr.left
         else:
