@@ -1,0 +1,80 @@
+Problem :
+Given a binary tree of size N, find its reverse level order traversal. ie- the traversal must begin from the last level.
+
+Solution :
+
+--------------------- Using Recursion (TC - O(n**2), SC - O(n))------------------------------
+class Node:
+    def __init__(self, key):
+        self.data = key
+        self.left = None
+        self.right = None
+ 
+def printLevelOrder(root):
+    h = height(root)
+    for i in reversed(range(1, h+1)):
+        printCurrentLevel(root, i)
+ 
+def printCurrentLevel(root, level):
+    if root is None:
+        return
+    if level == 1:
+        print(root.data, end=" ")
+    elif level > 1:
+        printCurrentLevel(root.left, level-1)
+        printCurrentLevel(root.right, level-1)
+         
+def height(node):
+    if node is None:
+        return 0
+    else:
+        lheight = height(node.left)
+        rheight = height(node.right)
+        if lheight > rheight:
+            return lheight+1
+        else:
+            return rheight+1
+ 
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+ 
+printLevelOrder(root)
+
+Output : 4 5 2 3 1
+
+--------------------- Using Deque (TC - O(n), SC - O(n)) ------------------------------
+from collections import deque
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        
+def reverseLevelOrder(root):
+    q = deque()
+    q.append(root)
+    ans = deque()
+    while q:
+        node = q.popleft()
+        if node:
+            ans.appendleft(node.data)
+            print("ans is ", ans)
+            if node.right:
+                q.append(node.right)
+            if node.left:
+                q.append(node.left)
+    return ans
+    
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+deq=reverseLevelOrder(root)
+for i in deq:
+    print(i,end=' ')    
