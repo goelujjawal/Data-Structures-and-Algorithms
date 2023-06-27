@@ -1,0 +1,77 @@
+Problem :
+
+Given a Binary Tree, find its Boundary Traversal. The traversal should be in the following order: 
+
+Left boundary nodes: defined as the path from the root to the left-most node ie- the leaf node you could reach when you always travel preferring the left subtree
+                     over the right subtree. 
+Leaf nodes: All the leaf nodes except for the ones that are part of left or right boundary.
+Reverse right boundary nodes: defined as the path from the right-most node to the root. The right-most node is the leaf node you could reach when you always travel
+                              preferring the right subtree over the left subtree. Exclude the root from this as it was already included in the traversal of left
+                              boundary nodes.
+Note: If the root doesn't have a left subtree or right subtree, then the root itself is the left or right boundary. 
+
+Example 1:
+Input:
+        1 
+      /   \
+     2     3  
+    / \   / \ 
+   4   5 6   7
+      / \
+     8   9
+   
+Output: 1 2 4 8 9 6 7 3
+
+Example 2:
+Input:
+            1
+           /
+          2
+        /  \
+       4    9
+     /  \    \
+    6    5    3
+             /  \
+            7     8
+
+Output: 1 2 4 6 5 7 8
+
+
+
+Solution :
+
+class Solution:
+    def printBoundaryLeft(self,root,ans):
+        if root:
+            if root.left:
+                ans.append(root.data)
+                self.printBoundaryLeft(root.left,ans)
+            elif root.right:
+                ans.append(root.data)
+                self.printBoundaryLeft(root.right,ans)
+                
+    def printLeaves(self,root,ans):
+        if root:
+            self.printLeaves(root.left,ans)
+            if root.left==None and root.right==None:
+                ans.append(root.data)
+            self.printLeaves(root.right,ans)
+                
+    def printBoundaryRight(self,root,ans):
+        if root:
+            if root.right:
+                self.printBoundaryRight(root.right,ans)
+                ans.append(root.data)
+            elif root.left:
+                self.printBoundaryRight(root.left,ans)
+                ans.append(root.data)
+                
+    def printBoundaryView(self, root):
+        ans=[]
+        if root:
+            ans.append(root.data)
+            self.printBoundaryLeft(root.left,ans)
+            self.printLeaves(root.left,ans)
+            self.printLeaves(root.right,ans)
+            self.printBoundaryRight(root.right,ans)
+            return ans
