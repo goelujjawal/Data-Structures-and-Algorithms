@@ -1,0 +1,43 @@
+Problem :
+
+Given a Binary Tree, find the vertical traversal of it starting from the leftmost level to the rightmost level.
+If there are multiple nodes passing through a vertical line, then they should be printed as they appear in level order traversal of the tree.
+
+Example 1:
+
+Input:
+           1
+         /   \
+       2       3
+     /   \   /   \
+   4      5 6      7
+              \      \
+               8      9           
+Output: 
+4 2 1 5 6 3 8 7 9 
+
+
+Solution :
+
+class Solution:
+    def verticalOrder(self, root):
+        d={}
+        q=[[root,0]]
+        ans=[]
+        while len(q)!=0:
+            node=q[0][0]
+            hd=q[0][1]
+            q.pop(0)
+            if hd in d:
+                d[hd].append(node.data)
+            else:
+                d[hd]=[node.data]
+            if node.left!=None:
+                q.append([node.left,hd-1])
+            if node.right!=None:
+                q.append([node.right,hd+1])
+                
+        for key,value in enumerate(sorted(d)):
+            for i in d[value]:
+                ans.append(i)
+        return ans 
