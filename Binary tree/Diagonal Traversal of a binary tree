@@ -1,0 +1,41 @@
+Problem:
+
+iven a Binary Tree, print the diagonal traversal of the binary tree.
+
+Consider lines of slope -1 passing between nodes. Given a Binary Tree, print all diagonal elements in a binary tree belonging to same line.
+If the diagonal element are present in two different subtress then left subtree diagonal element should be taken first and then right subtree. 
+
+Example 1:
+
+Input :
+            8
+         /     \
+        3      10
+      /   \      \
+     1     6     14
+         /   \   /
+        4     7 13
+Output : 8 10 14 3 6 7 13 1 4
+
+
+Solution :
+
+class Solution:
+    def getDiagonal(self,root,d,dictDiagonal):
+        if root==None:
+            return
+        if d in dictDiagonal:
+            dictDiagonal[d].append(root.data)
+        else:
+            dictDiagonal[d]=[root.data]
+        self.getDiagonal(root.left,d+1,dictDiagonal)
+        self.getDiagonal(root.right,d,dictDiagonal)
+            
+    def diagonal(self,root):
+        ans=[]
+        dictDiagonal={}
+        self.getDiagonal(root,0,dictDiagonal)
+        for key,value in enumerate(sorted(dictDiagonal)):
+            for i in dictDiagonal[value]:
+                ans.append(i)
+        return ans
