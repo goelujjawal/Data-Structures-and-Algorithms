@@ -29,7 +29,7 @@ Output: 10 30 60
 
 
 Solution :
-
+--------------------------------------------- Using recursion -------------------------------------------------
 class Solution:
     def getRightView(self,root,ans,level,d):
         if root is None:
@@ -44,4 +44,24 @@ class Solution:
         d={}
         ans=[]
         self.getRightView(root,ans,0,d)
+        return ans
+
+----------------------------------------------- Using Level order traversal --------------------------------
+def rightView(self,root):
+        if root==None:
+            return
+        ans=[]
+        q=deque()
+        q.append(root)
+        while len(q)>0:
+            n=len(q)
+            while n>0:
+                n-=1
+                temp=q.popleft()
+                if n==0:
+                    ans.append(temp.data)
+                if temp.left!=None:
+                    q.append(temp.left)
+                if temp.right!=None:
+                    q.append(temp.right)
         return ans
