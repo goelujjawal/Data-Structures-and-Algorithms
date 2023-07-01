@@ -1,0 +1,46 @@
+Problem :
+
+Given a Binary Tree of size N, you need to find all the possible paths from root node to all the leaf node's of the binary tree.
+
+Example 1:
+
+Input:
+       1
+    /     \
+   2       3
+Output: 1 2 #1 3 #
+Explanation: 
+All possible paths:
+1->2
+1->3
+
+Example 2:
+
+Input:
+         10
+       /    \
+      20    30
+     /  \
+    40   60
+Output: 10 20 40 #10 20 60 #10 30 #
+
+
+Solution :
+
+def getPaths(root,path,allpath):
+    if root==None:
+        return
+    path.append(root.data)
+    if root.left==None and root.right==None:
+        allpath.append(path.copy())
+        path.pop()
+        return
+    getPaths(root.left,path,allpath)
+    getPaths(root.right,path,allpath)
+    path.pop()
+    
+def Paths(root):
+    path=[]
+    allpath=[]
+    getPaths(root,path,allpath)
+    return allpath
