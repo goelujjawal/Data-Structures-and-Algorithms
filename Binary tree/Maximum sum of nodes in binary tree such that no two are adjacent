@@ -1,0 +1,41 @@
+Problem :
+
+Given a binary tree with a value associated with each node, we need to choose a subset of these nodes such that sum of chosen nodes is maximum under a constraint
+that no two chosen node in subset should be directly connected that is, if we have taken a node in our sum then we can’t take its any children or parents in
+consideration and vice versa.
+                                          
+Example 1:
+Input:
+     11
+    /  \
+   1    2
+Output: 11
+Explanation: The maximum sum is sum of node 11.
+
+Example 2:
+Input:
+        1
+      /   \
+     2     3
+    /     /  \
+   4     5    6
+Output: 16
+Explanation: The maximum sum is sum of nodes 1 4 5 6 , i.e 16. These nodes are non adjacent.
+
+
+Solution :
+
+class Solution:
+    def maxSum(self,root):
+        if root==None:
+            Sum=[0,0]
+            return Sum
+        sum1=self.maxSum(root.left)
+        sum2=self.maxSum(root.right)
+        Sum=[0,0]
+        Sum[0]=sum1[1]+sum2[1]+root.data
+        Sum[1]=max(sum1[0],sum1[1])+max(sum2[0],sum2[1])
+        return Sum
+    def getMaxSum(self,root):
+        res=self.maxSum(root)
+        return max(res[0],res[1])
