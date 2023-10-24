@@ -9,7 +9,7 @@ Example : 10
 Output : 1010
 
 
-
+----- Approach 1 (using >> operator) ---------------------
 
 Solution :
 
@@ -23,3 +23,13 @@ while(n!=0):
     i+=1
     
 print(ans)
+
+------------ Approach 2 -------------------------------
+
+n=int(input())
+def decimalobinary(n):
+    if n>1:
+        decimalobinary(n//2)
+    print(n%2,end='')
+    
+decimalobinary(n)
