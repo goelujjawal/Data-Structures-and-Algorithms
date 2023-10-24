@@ -1,0 +1,23 @@
+Problem :
+
+Convert Binary number to Decimal number.
+
+Example: 1010
+Output: 10
+
+Example : 10101
+Output: 21
+
+
+Solution :
+
+n=10101
+ans=0
+i=0
+while n!=0:
+    digit=n%10
+    if digit==1:
+        ans=ans+pow(2,i)
+    n=n//10
+    i+=1
+print(ans)
