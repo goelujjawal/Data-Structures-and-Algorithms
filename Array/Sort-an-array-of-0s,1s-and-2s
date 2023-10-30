@@ -13,7 +13,7 @@ Explanation:
 
 
 Solution :
------------------- With sort() ---------------
+------------------ With sort() TC-(O(nlogn))---------------
 
 n=int(input())
 arr=list(map(int,input().split()))
@@ -21,7 +21,7 @@ arr.sort()
 for i in arr:
     print(i,end=' ')
     
----------------- Without sort() ------------
+---------------- Without sort() TC-O(n),SC-O(n)------------
 
 n=int(input())
 arr=list(map(int,input().split()))
@@ -32,7 +32,7 @@ print('0 '*a + '1 '*b + '2 '*c)
 
 
 
----------------- Without sort() ------------
+---------------- Without sort() TC-O(n),SC-O(1)------------
 n=int(input())
 a=list(map(int,input().split()))
 l=0
