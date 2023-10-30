@@ -15,7 +15,7 @@ Explanation: [9,4] is also accepted.
 
 Solution :
 
-lass Solution:
+class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         nums1.sort()
         nums2.sort()
