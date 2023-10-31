@@ -28,6 +28,33 @@ of element (-1)
 
 Solution :
 
+---------------- O(n**3) time complexity -------------------
+
+n=int(input())
+arr=list(map(int,input().split()))
+maxi=min(arr)
+for i in range(0,n):
+    for j in range(i,n):
+        s=0
+        for k in range(i,j+1):
+            s+=arr[k]
+        if s>maxi:
+            maxi=s
+print(maxi)
+
+---------------- O(n**2) time complexity -------------------
+
+n=int(input())
+a=list(map(int,input().split()))
+ans=min(a)
+for i in range(0,len(a)):
+    s=0
+    for j in range(i,len(a)):
+        s+=a[j]
+    if s>ans:
+        ans=s
+print(ans)
+
 ------------ Kadane's Algorithm (O(n) time complexity and O(1) space complexity) -------------- 
 
 n=int(input())
@@ -42,16 +69,3 @@ for i in range(0,n):
         max_till_here=0
 print(maxi)
 
----------------- O(n cube) time complexity -------------------
-
-n=int(input())
-arr=list(map(int,input().split()))
-maxi=min(arr)
-for i in range(0,n):
-    for j in range(i,n):
-        s=0
-        for k in range(i,j+1):
-            s+=arr[k]
-        if s>maxi:
-            maxi=s
-print(maxi)
