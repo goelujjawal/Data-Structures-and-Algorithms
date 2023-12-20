@@ -11,6 +11,7 @@ Output: 3
 
 Solution :
 
+---------------------------------------- Approach 1 -----------------------------------------------
 arr=list(map(int,input().split()))
 s=set(arr)
 ans=0
@@ -18,3 +19,23 @@ for i in s:
     if arr.count(i)>1:
         ans=i
 print(ans)
+
+---------------------------------------- Approach 2 TC-O(n), SC-O(n)-----------------------------------------------
+arr=list(map(int,input().split()))
+l=[0]*len(arr)
+for i in arr:
+    l[i]+=1
+for i in range(0,len(l)):
+    if l[i]>1:
+        print(i)
+        break
+
+---------------------------------------- Approach 3 TC-O(n), SC-O(1) -----------------------------------------------
+arr=list(map(int,input().split()))
+n=len(nums)
+for i in range(0,n):
+    nums[nums[i]%n]=nums[nums[i]%n]+n
+    for i in range(0,n):
+        if nums[i]//n>1:
+            print(i)
+            break
