@@ -1,0 +1,105 @@
+Problem : Given two sorted arrays arr1[] and arr2[] of sizes n and m in non-decreasing order. Merge them in sorted order without using any extra space. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements.
+
+Example 1:
+Input: 
+n = 4, arr1[] = [1 3 5 7] 
+m = 5, arr2[] = [0 2 6 8 9]
+Output: 
+arr1[] = [0 1 2 3]
+arr2[] = [5 6 7 8 9]
+Explanation:
+After merging the two 
+non-decreasing arrays, we get, 
+0 1 2 3 5 6 7 8 9.
+
+Example 2:
+Input: 
+n = 2, arr1[] = [10 12] 
+m = 3, arr2[] = [5 18 20]
+Output: 
+arr1[] = [5 10]
+arr2[] = [12 18 20]
+Explanation:
+After merging two sorted arrays 
+we get 5 10 12 18 20.
+
+
+
+Solution:
+
+----------------- Brute Force Approach , Tc-  O(n+m) + O(n+m), SC-  O(n+m) ----------------------------------
+a1=[1,3,5,7]
+a2=[0,2,6,8,9]
+a3=[]
+p1=p2=0
+while len(a1)>p1 and len(a2)>p2:
+    if a1[p1]<a2[p2]:
+        a3.append(a1[p1])
+        p1+=1
+    elif a1[p1]==a2[p2]:
+        a3.append(a1[p1])
+        p1+=1
+        p2+=1
+    else:
+        a3.append(a2[p2])
+        p2+=1
+        
+while len(a1)>p1:
+    a3.append(a1[p1])
+    p1+=1
+    
+while len(a2)>p2:
+    a3.append(a2[p2])
+    p2+=1
+            
+print(a3)
+
+
+----------------------- Optimal Approach 1 , TC -  O(min(n, m)) + O(n*logn) + O(m*logm), SC - O(1) -------------------
+a1=[1,3,5,7]
+a2=[0,2,6,8,9]
+p1=len(a1)-1
+p2=0
+while p1>=0 and p2<len(a2):
+    if a1[p1]>a2[p2]:
+        a1[p1],a2[p2]=a2[p2],a1[p1]
+        p1-=1
+        p2+=1
+    else:
+        break
+a1.sort()
+a2.sort()
+a1.extend(a2)
+print(a1)
+
+----------------------- Optimal Approach 2 , TC - O((n+m)*log(n+m)), , SC - O(1) -------------------
+a1=[1,3,5,7]
+a2=[0,2,6,8,9]
+length=len(a1)+len(a2)
+gap=length//2+length%2
+
+def swap(arr1,arr2,index1,index2):
+    if arr1[index1]>arr2[index2]:
+        arr1[index1],arr2[index2]=arr2[index2],arr1[index1]
+
+while gap>0:
+    print(gap)
+    p1=0
+    p2=gap
+    while p2<length:
+        # arr1 and arr2 
+        if p1<len(a1) and p2>=len(a1):
+            swap(a1,a2,p1,p2-len(a1))
+        # arr2 and arr2
+        elif p1>=len(a1):
+            swap(a2,a2,p1-len(a1),p2-len(a1))
+        # arr1 and arr1
+        else:
+            swap(a1,a1,p1,p2)
+        p1+=1
+        p2+=1
+    if gap==1:
+        break
+    gap=gap//2+gap%2
+    
+print(a1,a2)
