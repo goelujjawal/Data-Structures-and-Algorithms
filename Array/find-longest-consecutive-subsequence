@@ -33,7 +33,7 @@ n=int(input())
 arr=list(map(int,input().split()))[:n]
 arr.sort()
 c=1
-maxi=0
+maxi=1
 
 for i in range(0,len(arr)-1):
     if arr[i+1]-arr[i]==0:
@@ -50,14 +50,16 @@ print(maxi)
 
 n=int(input())
 a=list(map(int,input().split()))[:n]
-a=set(a)
-maxi=0
-for i in range(0,len(a)):
-    if i-1 not in a:
-        j=i
-        while j in a:
+s=set()
+for i in a:
+    s.add(i)
+maxi=1
+for i in range(0,len(s)):
+    if a[i]-1 not in s:
+        j=a[i]
+        while j in s:
             j+=1
-            if(maxi<j-i):
-                maxi=j-i
+        maxi=max(maxi,j-a[i])
 print(maxi)
+
     
