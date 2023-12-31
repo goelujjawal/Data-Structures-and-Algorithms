@@ -38,6 +38,8 @@ for i in a2:
     if i not in a1:
         flag=1
         break
+    else:
+        a1.remove(i)
 if flag==0:
     print("Yes")
 else:
