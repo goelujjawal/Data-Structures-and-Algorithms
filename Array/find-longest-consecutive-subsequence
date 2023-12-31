@@ -36,6 +36,8 @@ c=1
 maxi=0
 
 for i in range(0,len(arr)-1):
+    if arr[i+1]-arr[i]==0:
+        continue
     if arr[i+1]-arr[i]==1:
         c+=1
         if maxi<c:
