@@ -1,0 +1,54 @@
+Problem : Given an array of integers (A[])  and a number x, find the smallest subarray with sum greater than the given value. 
+If such a subarray do not exist return 0 in that case.
+
+Example 1:
+
+Input:
+A[] = {1, 4, 45, 6, 0, 19}
+x  =  51
+Output: 3
+Explanation:
+Minimum length subarray is 
+{4, 45, 6}
+
+Example 2:
+Input:
+A[] = {1, 10, 5, 2, 7}
+   x  = 9
+Output: 1
+Explanation:
+Minimum length subarray is {10}
+
+
+Solution :
+
+----------------- Method 1 ( TC - O(n**2), SC - O(1) ) ---------------------------------
+a=[1, 4, 45, 6, 0, 19]
+x=51
+mi=max(a)
+for i in range(0,len(a)):
+    s=0
+    for j in range(i,len(a)):
+        s+=a[j]
+        if s>x:
+            mi=min(mi,j-i+1)
+            
+print(mi)
+
+--------------- Method 1 ( TC - O(n), SC - O(1) ) --------------------------------
+a=[1, 4, 45, 6, 0, 19]
+x=51
+i=j=s=0
+temp=mi=max(a)
+while(i<=j and j<len(a)):
+    while(s<=x and j<len(a)):
+        s+=a[j]
+        j+=1
+    while(s>x and i<j):
+        mi=min(mi,j-i)
+        s-=a[i]
+        i+=1
+if mi==temp:
+    print(0)
+else:
+    print(mi)
