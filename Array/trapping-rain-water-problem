@@ -35,16 +35,18 @@ No water will be trapped.
 
 Solution :
 
------------------------Method 1---------------------
+-----------------------Method 1 (Time Complexity - O(n**2) & Space Complexity - O(1)---------------------
 n=int(input())
 a=list(map(int,input().split()))[:n]
 s=0
-for i in range(1,len(a)-1):
-    max1=max(a[:i])
-    max2=max(a[i+1:])
-    mini=min(max1,max2)
-    if mini-a[i]>0:
-        s+=mini-a[i]
+for i in range(1,len(a)):
+    left=a[i]
+    for j in range(i):
+        left=max(left,a[j])
+    right=a[i]
+    for j in range(i+1,len(a)):
+        right=max(right,a[j])
+    s+=min(left,right)-a[i]
 print(s)
 
 ---------------------Method 2 (Time Complexity - O(n) & Space Complexity - O(n)--------------
