@@ -10,6 +10,7 @@ Output :  s, count = 2
           
 Solution :
 
+--------------- Method 1 ----------------------------
 s=input()
 l=[]
 for i in s:
@@ -17,3 +18,18 @@ for i in s:
         l.append(i)
         cnt=s.count(i)
         print(i+", count = "+str(s.count(i)))
+
+--------------- Method 2 ----------------------------
+s=input()
+a=set(s)
+d={}
+for i in a:
+    if s.count(i)>1:
+        d[i]=s.count(i)
+
+keys=list(d.keys())
+keys.sort()
+
+sorted_d={i:d[i] for i in keys}
+for key,value in sorted_d.items():
+    print(key+",","count = ",value)
