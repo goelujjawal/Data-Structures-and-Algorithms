@@ -12,5 +12,12 @@ Output: ["h","a","n","n","a","H"]
 
 Solution:
 
+--------- Approach 1 ---------------------
 l=list(map(str,input().split()))
 print(l[::-1])
+
+--------- Approach 2 ---------------------
+l=list(map(str,input().split()))
+l.reverse()
+print(l)
+
