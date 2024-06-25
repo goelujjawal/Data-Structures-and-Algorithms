@@ -2,27 +2,29 @@ Problem :
 
 Check if a string is a valid shuffle of two other strings.
 
+Example :
+n1='XY'
+n2='12'
+n3='Y12X'
+Output: Yes
 
 Solution :
 
-s1=input()
-s2=input()
-s3=input()
-if len(s1)+len(s2)!=len(s3):
-    print("no")
-else:
-    i=0
-    j=0
-    k=0
-    while k<len(s3):
-        if i<len(s1) and s3[k]==s1[i]:
-            i+=1
-        elif j<len(s2) and s3[k]==s2[j]:
-            j+=1
-        else:
-            break
-        k+=1
-    if i<len(s1) or j<len(s2):
-        print("no")
-    else:
-        print("yes")
+n1=input()
+n2=input()
+n3=input()
+
+def valid_shuffle(n1,n2,n3):
+    if(len(n1)+len(n2)!=len(n3)):
+        return "No"
+    flag=0
+    for i in n3:
+        if i not in n1 and i not in n2:
+            flag=1
+    if flag==0:
+        return "Yes"
+    return "No"
+    
+print(valid_shuffle(n1,n2,n3))
+
+
