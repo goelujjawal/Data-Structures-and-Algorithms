@@ -19,7 +19,7 @@ Explanation: The square root of 8 is 2.82842..., and since we round it down to t
  
 n=int(input())
 def sqrt(n):
-    start=0
+    start=1
     end=n-1
     mid=start+((end-start)//2)
     ans=0
@@ -30,7 +30,7 @@ def sqrt(n):
             ans=mid
             start=mid+1
         if mid*mid==n:
-            return mid-1
+            return mid
         mid=start+((end-start)//2)
     return ans
 print(sqrt(n))
