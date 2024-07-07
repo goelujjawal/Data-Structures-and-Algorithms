@@ -1,34 +1,28 @@
 Problem :
 
-Consider a sample space S consisting of all perfect squares starting from 1, 4, 9 and so on.
-You are given a number N, you have to output the number of integers less than N in the sample space S.
+Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+You must not use any built-in exponent function or operator.
+For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
 
 Example 1:
-Input :
-N = 9
-Output:
-2
-Explanation:
-1 and 4 are the only Perfect Squares
-less than 9. So, the Output is 2.
+Input: x = 4
+Output: 2
+Explanation: The square root of 4 is 2, so we return 2.
 
-Example 2 :
-Input :
-N = 3
-Output:
-1
-Explanation:
-1 is the only Perfect Square
-less than 3. So, the Output is 1.
+Example 2:
+Input: x = 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
  
  
  Solution :
  
 n=int(input())
-def count_square(n):
+def sqrt(n):
     start=0
     end=n-1
     mid=start+((end-start)//2)
+    ans=0
     while start<=end:
         if mid*mid>n:
             end=mid-1
@@ -39,4 +33,4 @@ def count_square(n):
             return mid-1
         mid=start+((end-start)//2)
     return ans
-print(count_square(n))
+print(sqrt(n))
