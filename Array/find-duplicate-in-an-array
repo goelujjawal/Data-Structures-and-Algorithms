@@ -25,11 +25,14 @@ print(ans)
 
 ---------------------------------------- Approach 2 TC-O(n), SC-O(n)-----------------------------------------------
 arr=list(map(int,input().split()))
+if n==len(set(arr)):
+    return [-1]
 l=[0]*len(arr)
+ans=[]
 for i in arr:
     l[i]+=1
 for i in range(0,len(l)):
     if l[i]>1:
-        print(i)
-        break
+        ans.append(i)
+print(ans)
 
