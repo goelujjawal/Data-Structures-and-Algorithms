@@ -51,8 +51,8 @@ for i in range(0,len(a)):
     s=0
     for j in range(i,len(a)):
         s+=a[j]
-    if s>ans:
-        ans=s
+        if s>ans:
+            ans=s
 print(ans)
 
 ------------ Kadane's Algorithm (O(n) time complexity and O(1) space complexity) -------------- 
