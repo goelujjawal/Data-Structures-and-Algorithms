@@ -38,6 +38,7 @@ while len(a1)>p1 and len(a2)>p2:
         p1+=1
     elif a1[p1]==a2[p2]:
         a3.append(a1[p1])
+        a3.append(a2[p2])
         p1+=1
         p2+=1
     else:
